@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Proctoring System</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- TensorFlow.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/4.10.0/tf.min.js"></script>
+    
+    <!-- Face-api.js for face detection and recognition -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/face-api.js/0.22.2/face-api.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Proctoring System</h1>
+        
+        <!-- Video feed -->
+        <div class="video-container">
+            <video id="videoElement" autoplay muted playsinline></video>
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button id="startBtn">Start Monitoring</button>
+            <button id="stopBtn" disabled>Stop Monitoring</button>
+            <button id="setReferenceBtn">Set Reference Person</button>
+        </div>
+        
+        <!-- Status indicators -->
+        <div class="status-grid">
+            <div class="status-item" id="personStatus">
+                <h3>Person Detection</h3>
+                <span class="status-indicator" id="personIndicator">●</span>
+                <span id="personText">Initializing...</span>
+            </div>
+            
+            <div class="status-item" id="identityStatus">
+                <h3>Identity Verification</h3>
+                <span class="status-indicator" id="identityIndicator">●</span>
+                <span id="identityText">No reference set</span>
+            </div>
+            
+            <div class="status-item" id="multipleStatus">
+                <h3>Multiple Faces</h3>
+                <span class="status-indicator" id="multipleIndicator">●</span>
+                <span id="multipleText">Checking...</span>
+            </div>
+            
+            <div class="status-item" id="attentionStatus">
+                <h3>Attention Tracking</h3>
+                <span class="status-indicator" id="attentionIndicator">●</span>
+                <span id="attentionText">Monitoring...</span>
+            </div>
+            
+            <div class="status-item" id="mobileStatus">
+                <h3>Mobile Detection</h3>
+                <span class="status-indicator" id="mobileIndicator">●</span>
+                <span id="mobileText">Scanning...</span>
+            </div>
+        </div>
+        
+        <!-- Logs -->
+        <div class="logs-container">
+            <h3>Detection Logs</h3>
+            <div id="logsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Include all detection modules -->
+    <script src="personDetection.js"></script>
+    <script src="identityVerification.js"></script>
+    <script src="multipleFaceDetection.js"></script>
+    <script src="attentionTracking.js"></script>
+    <script src="mobileDetection.js"></script>
+    <script src="logger.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+    <script src="main.js"></script>
+</body>
+</html>
